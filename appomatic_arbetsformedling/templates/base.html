@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>{% block title %}Piratarbetsförmedlingen{% endblock %}</title>
+  <link rel="stylesheet/less" type="text/css" href="{{STATIC_URL}}/css/styles.less" />
+  <script src="{{STATIC_URL}}js/less.js" type="text/javascript"></script>
+
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.js" type="text/javascript"></script>
+  {% include 'autocomplete_light/static.html' %}
+
+  {% block meta %}{% endblock %}
+</head>
+<body id="{% block body_id %}{% endblock %}" class="{% block body_class %}{% endblock %}">
+  <div id="body">
+    {% block body %}
+      <div class="menu">
+        <img src="{{STATIC_URL}}/images/logo.svg">
+        {% block menu %}
+          <a href="{% url 'appomatic_arbetsformedling.views.projects' %}">Projects</a>
+          <a href="{% url 'appomatic_arbetsformedling.views.skills' %}">Skills</a>
+          <a href="{% url 'userena_profile_list' %}">Accounts</a>
+          {% if request.user.is_authenticated %}
+            <a href="{% url 'userena_profile_detail' username=request.user.username %}">My profile</a>
+            <a href="{% url 'userena_signout' %}">Sign out</a>
+          {% else %}
+            <a href="{% url 'userena_signin' %}">Sign in</a>
+            <a href="{% url 'userena_signup' %}">Sign up</a>
+          {% endif %}
+        {% endblock %}
+      </div>
+      <div class="body">
+        <div class="content_title">
+          {% block content_title %}{% endblock %}
+        </div>
+        <div class="content">
+          {% block content %}{% endblock %}
+        </div>
+      </div>
+    {% endblock %}
+  </div>
+</body>
+</html>

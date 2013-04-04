@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block content_title %}
+  <h1>
+    <a href="{{project.link}}">{{project.name}}</a>
+    <span class="actions">
+      {% if project.owner.user.id == request.user.id %}
+        <a href="{% url 'appomatic_arbetsformedling.views.project_edit' name=project.slug %}">Edit</a>
+      {% endif %}
+      {% if request.user.profile in project.signups.all %}
+        <a href="{% url 'appomatic_arbetsformedling.views.project_signdown' name=project.slug %}">Cancel sign up</a>
+      {% else %}
+        <a href="{% url 'appomatic_arbetsformedling.views.project_signup' name=project.slug %}">Sign up</a>
+      {% endif %}
+    </span>
+  </h1>
+{% endblock %}
+{% block content %}
+  {% if project.image %}<img src="{{project.image.url}}">{% endif %}
+  <p>{{project.created|date:"Y-m-d H:i:s"}}</p>
+  <p>By {{project.owner.user.username}} ({{project.owner.user.first_name}} {{project.owner.user.last_name}})</p>
+  {% if project.link %}<p>Homepage: <a href="{{project.link}}">{{project.link}}</a></p>{% endif %}
+  <p><em>{{project.summary}}</em></p>
+  <p>{{project.description}}</p>
+
+  <h2>Required skills</h2>
+  <ul>
+    {% for skill in project.required_skills.all %}
+      <li><a href="{% url 'appomatic_arbetsformedling.views.skill' name=skill.slug %}">{{skill.name}}</a></li>
+    {% endfor %}
+  </ul>
+
+  <h2>Signups</h2>
+  <ul>
+    {% for person in project.signups.all %}
+      <li><a href="{% url 'userena.views.profile_detail' username=person.user.username %}">{{person.user.username}} ({{person.user.first_name}} {{person.user.last_name}})</a></li>
+    {% endfor %}
+  </ul>
+
+  <h2>Matching people</h2>
+  <ul>
+    {% for person in project.matching_people %}
+      <li>
+         <a href="{% url 'userena.views.profile_detail' username=person.user.username %}">{{person.user.username}} ({{person.user.first_name}} {{person.user.last_name}})</a>
+         (
+           {% for skill in person.matching_skills %}
+             <a href="{% url 'appomatic_arbetsformedling.views.skill' name=skill.slug %}">{{skill.name}}</a>
+           {% endfor %}
+         )
+      </li>
+    {% endfor %}
+  </ul>
+{% endblock %}

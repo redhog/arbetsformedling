@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content_title %}
+  <h1>{{skill.name}}</h1>
+{% endblock %}
+{% block content %}
+  <p>{{skill.description}}</p>
+
+  <h2>Projects</h2>
+  <ul>
+    {% for project in skill.projects.all %}
+      <li><a href="{% url 'appomatic_arbetsformedling.views.project' name=project.slug %}">{{project.name}}</a></li>
+    {% endfor %}
+  </ul>
+{% endblock %}

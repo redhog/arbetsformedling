@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block content_title %}
+  <h1>
+    Projects
+    {% if request.user.is_authenticated %}
+      <span class="actions"><a href="{% url 'appomatic_arbetsformedling.views.project_create' %}">Create project</a></span>
+    {% endif %}
+  </h1>
+{% endblock %}
+{% block content %}
+  <div class="list">
+    {% for project in projects %}
+       <a class="item" href="{% url 'appomatic_arbetsformedling.views.project' name=project.slug %}">
+         <h3>
+           {{project.name}}
+           {% if project.matching_skills %}
+             (
+               {% for skill in project.matching_skills %}
+                 {{skill.name}}
+               {% endfor %}
+             )
+          {% endif %}
+        </h3>
+        <p class="subheading">By {{project.owner.user.username}} {{project.created|date:"Y-m-d H:i:s"}}</p>
+        <p>{{project.summary}}</p>
+      </a>
+    {% endfor %}
+  </div>
+{% endblock %}
