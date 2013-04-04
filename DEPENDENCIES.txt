@@ -1,0 +1,15 @@
+BeautifulSoup==3.2.1
+Django==1.5
+PIL==1.1.7
+appomatic==0.0.14
+appomatic-admin==0.0.14
+appomatic-appadmin==0.0.16
+appomaticcore==0.0.17
+distribute==0.6.24
+django-autocomplete-light==1.1.27
+django-facebook==5.0.11beta
+django-guardian==1.1.0.beta
+django-mptt==0.5.5
+django-userena==1.2.0
+easy-thumbnails==1.2
+scrubber==1.6.1
