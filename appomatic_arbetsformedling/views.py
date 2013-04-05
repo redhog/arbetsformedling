@@ -128,7 +128,7 @@ def project_signup(request, name):
         [project.owner.user], 
         project=project,
         signer=request.user.profile,
-        SITE_URL=django.contrib.sites.models.Site.objects.get_current().domain)
+        SITE_URL="http://" + django.contrib.sites.models.Site.objects.get_current().domain)
 
     return django.http.HttpResponseRedirect(django.core.urlresolvers.reverse('appomatic_arbetsformedling.views.project', kwargs={"name": project.slug}))
 
@@ -141,6 +141,6 @@ def project_signdown(request, name):
         [project.owner.user], 
         project=project,
         signer=request.user.profile,
-        SITE_URL=django.contrib.sites.models.Site.objects.get_current().domain)
+        SITE_URL="http://" + django.contrib.sites.models.Site.objects.get_current().domain)
 
     return django.http.HttpResponseRedirect(django.core.urlresolvers.reverse('appomatic_arbetsformedling.views.project', kwargs={"name": project.slug}))

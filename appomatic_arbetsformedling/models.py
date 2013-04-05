@@ -133,4 +133,4 @@ def handler(sender, instance, **kwargs):
          for profile in instance.matching_people(None)
          if profile.send_project_email], 
         project=instance,
-        SITE_URL=django.contrib.sites.models.Site.objects.get_current().domain)
+        SITE_URL="http://" + django.contrib.sites.models.Site.objects.get_current().domain)
