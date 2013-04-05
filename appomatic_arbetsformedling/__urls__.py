@@ -2,6 +2,7 @@ import django.conf.urls
 import appomatic_arbetsformedling.forms
 
 urlpatterns = django.conf.urls.patterns('',
+    (r'^/?$', 'appomatic_arbetsformedling.views.projects'),
     (r'^skill/?$', 'appomatic_arbetsformedling.views.skills'),
     (r'^skill/create?$', 'appomatic_arbetsformedling.views.skill_create'),
     (r'^skill/(?P<name>.*)/?$', 'appomatic_arbetsformedling.views.skill'),

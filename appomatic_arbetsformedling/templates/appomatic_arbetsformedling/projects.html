@@ -8,6 +8,13 @@
   </h1>
 {% endblock %}
 {% block content %}
+  {% if not request.user.is_authenticated %}
+    <div class="blurb">
+      <h1>Hej och välkommen till Piratarbetsförmedlingen!</h1>
+      <p>Projektet är just nu i betatest. Om du hittar några buggar så maila gärna mig på egil.moller@piratpartiet.se. Skriv i så fall adressen till sidan som ofunkar, vad du klickade på för att komma dit, och gärna en skärmdump.</p> 
+      <p>Du kan titta på de projekt som söker hjälp nedan utan att vara inloggad, men för att få störst nytta av siten måste du <a href="{% url 'userena_signup' %}">registrera dig</a> eller <a href="{% url 'userena_signin' %}">logga in</a>.</p>
+    </div>
+  {% endif %}
   <div class="list">
     {% for project in projects %}
        <a class="item" href="{% url 'appomatic_arbetsformedling.views.project' name=project.slug %}">
