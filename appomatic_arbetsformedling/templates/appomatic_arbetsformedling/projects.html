@@ -11,6 +11,7 @@
   {% if not request.user.is_authenticated %}
     <div class="blurb">
       <h1>Hej och välkommen till Piratarbetsförmedlingen!</h1>
+      <p>Piratarbetsförmedlingen är en site som hjälper projekt inom och kring partiet att hitta kunniga, intresserad aktivister och pirater som kan hjälpa till, och som hjälper pirater som vill aktivera sig och <em>göra</em> saker att hitta projekt att vara med i!</p>
       <p>Projektet är just nu i betatest. Om du hittar några buggar så maila gärna mig på egil.moller@piratpartiet.se. Skriv i så fall adressen till sidan som ofunkar, vad du klickade på för att komma dit, och gärna en skärmdump.</p> 
       <p>Du kan titta på de projekt som söker hjälp nedan utan att vara inloggad, men för att få störst nytta av siten måste du <a href="{% url 'userena_signup' %}">registrera dig</a> eller <a href="{% url 'userena_signin' %}">logga in</a>.</p>
     </div>
